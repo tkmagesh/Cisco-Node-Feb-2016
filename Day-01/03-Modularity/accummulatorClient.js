@@ -6,7 +6,7 @@
     - getResult()
 */
 
-var accummulator = require('./accumulator.js');
+var accummulator = require('./accummulator.js');
 console.log(accummulator.getResult()); // => 0
 accummulator.add(100);
 accummulator.subtract(50);
