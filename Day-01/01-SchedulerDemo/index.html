@@ -4,49 +4,51 @@
     <meta charset="UTF-8">
     <title>Browser Scheduler</title>
     <script>
-        var divMessages = null;
-        window.addEventListener("DOMContentLoaded", init);
-        function init(){
-            divMessages = document.getElementById("divMessages");
-            var btnDoWork = document.getElementById("btnDoWork");
-            btnDoWork.addEventListener("click", onBtnDoWorkClick);
-        }
-        function onBtnDoWorkClick(){
-            displayMessage("Work Started!!");
-            doWork(onTaskComplete, onTaskProgress);
-        }
-        function onTaskComplete(){
-            displayMessage("Work Completed!!");
-        }
-        function onTaskProgress(percentCompleted){
-            document.getElementById("workProgress").value = percentCompleted;
-        }
-        function doWork(onComplete, onProgress){
-            var totalIterations = 1000,
-                currentIteration = 0;
-            function oneIteration(){
-                for(var i=0; i< (10000/totalIterations);i++)
-                    for(var j=0; j<10000; j++)
-                        for(var k=0; k<100; k++){
-
-                        }
-                ++currentIteration;
-                var percentCompleted = (currentIteration/totalIterations) * 100;
-                if (typeof onProgress === 'function')
-                    onProgress(percentCompleted);
-                if (currentIteration < totalIterations){
-                    setTimeout(oneIteration);
-                } else {
-                    if (typeof onComplete === 'function')
-                        onComplete();
-                    console.log("Job done");
-                }
+        (function(){
+            var divMessages = null;
+            window.addEventListener("DOMContentLoaded", init);
+            function init(){
+                divMessages = document.getElementById("divMessages");
+                var btnDoWork = document.getElementById("btnDoWork");
+                btnDoWork.addEventListener("click", onBtnDoWorkClick);
             }
-            oneIteration();
-        }
-        function displayMessage(msg){
-            divMessages.innerHTML += msg + "<br/>";
-        }
+            function onBtnDoWorkClick(){
+                displayMessage("Work Started!!");
+                doWork(onTaskComplete, onTaskProgress);
+            }
+            function onTaskComplete(){
+                displayMessage("Work Completed!!");
+            }
+            function onTaskProgress(percentCompleted){
+                document.getElementById("workProgress").value = percentCompleted;
+            }
+            function doWork(onComplete, onProgress){
+                var totalIterations = 1000,
+                    currentIteration = 0;
+                function oneIteration(){
+                    for(var i=0; i< (10000/totalIterations);i++)
+                        for(var j=0; j<10000; j++)
+                            for(var k=0; k<100; k++){
+
+                            }
+                    ++currentIteration;
+                    var percentCompleted = (currentIteration/totalIterations) * 100;
+                    if (typeof onProgress === 'function')
+                        onProgress(percentCompleted);
+                    if (currentIteration < totalIterations){
+                        setTimeout(oneIteration);
+                    } else {
+                        if (typeof onComplete === 'function')
+                            onComplete();
+                        console.log("Job done");
+                    }
+                }
+                oneIteration();
+            }
+            function displayMessage(msg){
+                divMessages.innerHTML += msg + "<br/>";
+            }
+        })();
     
     </script>
 </head>
