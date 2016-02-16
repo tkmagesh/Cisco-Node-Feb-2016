@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Browser Scheduler</title>
+    <script>
+        var divMessages = null;
+        window.addEventListener("DOMContentLoaded", init);
+        function init(){
+            divMessages = document.getElementById("divMessages");
+            var btnDoWork = document.getElementById("btnDoWork");
+            btnDoWork.addEventListener("click", onBtnDoWorkClick);
+        }
+        function onBtnDoWorkClick(){
+            displayMessage("Work Started!!");
+            setTimeout(triggerWork);
+        }
+        function triggerWork(){
+            doWork();
+            displayMessage("Work Completed!!");
+        }
+        function doWork(){
+            for(var i=0; i<10000;i++)
+                for(var j=0; j<10000; j++)
+                    for(var k=0; k<100; k++){
+                        
+                    }
+        }
+        function displayMessage(msg){
+            divMessages.innerHTML += msg + "<br/>";
+        }
+    
+    </script>
+</head>
+<body>
+    <input type="text" name="" id="">
+    <input type="button" value="Do Work" id="btnDoWork">
+    <div id="divMessages"></div>
+</body>
+</html>
