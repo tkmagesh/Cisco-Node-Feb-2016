@@ -13,18 +13,36 @@
         }
         function onBtnDoWorkClick(){
             displayMessage("Work Started!!");
-            setTimeout(triggerWork);
+            doWork(onTaskComplete, onTaskProgress);
         }
-        function triggerWork(){
-            doWork();
+        function onTaskComplete(){
             displayMessage("Work Completed!!");
         }
-        function doWork(){
-            for(var i=0; i<10000;i++)
-                for(var j=0; j<10000; j++)
-                    for(var k=0; k<100; k++){
-                        
-                    }
+        function onTaskProgress(percentCompleted){
+            document.getElementById("workProgress").value = percentCompleted;
+        }
+        function doWork(onComplete, onProgress){
+            var totalIterations = 1000,
+                currentIteration = 0;
+            function oneIteration(){
+                for(var i=0; i< (10000/totalIterations);i++)
+                    for(var j=0; j<10000; j++)
+                        for(var k=0; k<100; k++){
+
+                        }
+                ++currentIteration;
+                var percentCompleted = (currentIteration/totalIterations) * 100;
+                if (typeof onProgress === 'function')
+                    onProgress(percentCompleted);
+                if (currentIteration < totalIterations){
+                    setTimeout(oneIteration);
+                } else {
+                    if (typeof onComplete === 'function')
+                        onComplete();
+                    console.log("Job done");
+                }
+            }
+            oneIteration();
         }
         function displayMessage(msg){
             divMessages.innerHTML += msg + "<br/>";
@@ -36,5 +54,8 @@
     <input type="text" name="" id="">
     <input type="button" value="Do Work" id="btnDoWork">
     <div id="divMessages"></div>
+    <div>
+        <progress id="workProgress" min="0" max="100" value="0"></progress>
+    </div>
 </body>
 </html>
