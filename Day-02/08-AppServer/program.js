@@ -1,4 +1,5 @@
 var http = require('http'),
+    path = require('path'),
     dataParser = require('./dataParser'),
     staticResourceServer = require('./staticResourceServer'),
     calculatorHandler = require('./calculatorHandler'),
@@ -6,7 +7,7 @@ var http = require('http'),
     app = require('./app');
 
 app.use(dataParser);
-app.use(staticResourceServer);
+app.use(staticResourceServer(path.join(__dirname, './public')));
 app.use(calculatorHandler);
 app.use(notFoundHandler);
 

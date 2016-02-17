@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator</title>
+    <style>
+        .result{
+            color : red;
+            font-size: 20pt;
+        }
+        span{
+            font-size: 14pt;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Calculator</h1>
+    <hr>
+    <form action="/calculator" method="post">
+        <input type="text" name="n1" id="" value="{{n1}}">
+        <select name="op" id="">
+            <option value="add" {{#if add}} selected {{/if}}>add</option>
+            <option value="subtract" {{#if subtract}} selected {{/if}}>subtract</option>
+            <option value="divide" {{#if divide}} selected {{/if}}>divide</option>
+            <option value="multiply" {{#if multiply}} selected {{/if}}>multiply</option>
+        </select>
+        <input type="text" name="n2" id="" value="{{n2}}">
+        <input type="submit" value="Calculate">
+        <div class="result">{{result}}</div>
+    </form>
+</body>
+</html>

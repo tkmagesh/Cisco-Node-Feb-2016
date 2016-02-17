@@ -1,0 +1,15 @@
+{
+  "name": "08-AppServer",
+  "version": "1.0.0",
+  "description": "a sample app",
+  "main": "program.js",
+  "scripts": {
+    "start": "node program.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Magesh K",
+  "license": "ISC",
+  "dependencies": {
+    "handlebars": "^4.0.5"
+  }
+}
