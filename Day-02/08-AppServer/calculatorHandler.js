@@ -1,7 +1,7 @@
 var qs = require('querystring'),
     calculator = require('./calculator');
 
-module.exports = function(req, res){
+module.exports = function(req, res, next){
     if (req.url.pathname === '/calculator' && req.method === 'GET'){
         var query = req.url.query,
             op = query.op || 'add',
@@ -26,5 +26,7 @@ module.exports = function(req, res){
             res.write(result.toString());
             res.end();
         });
+    } else {
+        next();
     }
 }

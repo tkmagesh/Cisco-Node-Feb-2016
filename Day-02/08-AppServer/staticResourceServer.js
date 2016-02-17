@@ -6,7 +6,7 @@ function isStatic(pathname){
     return staticExtns.indexOf(path.extname(pathname)) !== -1;
 }
 
-module.exports = function(req, res){
+module.exports = function(req, res, next){
     if (isStatic(req.url.pathname)){
         var resourcePath = path.join(__dirname, req.url.pathname);
         fs.access(resourcePath, fs.F_OK | fs.R_OK, function(err) {
@@ -26,5 +26,7 @@ module.exports = function(req, res){
                 res.end();
             });
         });
+    } else {
+        next();
     }
 }
