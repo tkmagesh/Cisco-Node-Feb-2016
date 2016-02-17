@@ -15,16 +15,7 @@ module.exports = function(req, res, next){
                 res.end();
                 return;
             }
-            //fs.createReadStream(resourcePath).pipe(res);
-            var stream = fs.createReadStream(resourcePath);
-            stream.on('data', function(chunk){
-                console.log('writing response to the res stream');
-                res.write(chunk);
-            });
-            stream.on('end', function(){
-                console.log('DOne with cowriting response to the res stream');
-                res.end();
-            });
+            fs.createReadStream(resourcePath).pipe(res);
         });
     } else {
         next();
